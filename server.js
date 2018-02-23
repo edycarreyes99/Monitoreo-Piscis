@@ -1,7 +1,7 @@
 //integracion de las dependencias de SerialPort
 const SerialPort = require('serialport');
 const ReadLine = SerialPort.parsers.Readline;
-const parser = new ReadLine();
+
 //integracion de las dependencias de Express
 const express = require('express');
 const app = express();
@@ -10,6 +10,13 @@ const socket = require('socket.io');
 const http = require('http');
 const server = http.createServer(app);
 const io = socket.listen(server);
+//integracion de las dependencias de firebase
+const firebase = require('firebase');
+firebase.initializeApp({
+    databaseURL: "https://proyecto-robotica-35bed.firebaseio.com"
+});
+const ref = firebase.database().ref('temperature');
+const temperatureRef = ref.child("today");
 
 //envia la ruta de enlace de este archivo al index.html para mostrar los datos
 app.get('/',(req,res,next) => {
@@ -20,23 +27,27 @@ app.get('/',(req,res,next) => {
 const mySerial = new SerialPort('COM6',{
     baudRate: 9600,
 });
-
+const parser = mySerial.pipe(new ReadLine({ delimeter: '\r\n'}));
 //dispone si se realizo correctamente la conexion
-mySerial.on('open',function(){
+parser.on('open',function(){
     console.log('Puerto Serial Abierto');
 });
 
 //muestra dato por dato en consola
-mySerial.on('data',function(data){
-    console.log(data.toString());
+parser.on('data',function(data){
+    let temp = parseInt(data) + " °C"
+    console.log(temp);
     //se envian los datos al index.html
-    io.emit('arduino:data',{
-        value: data.toString()
+    io.emit('temperature',data)
+    //se envian los datos a la firebase
+    temperatureRef.push({
+        valor: data,
+        fecha: 'hoy'
     });
 });
 
 //define y muestra en consola el tipo de error que hay
-mySerial.on('err',function(){
+parser.on('err',function(){
     console.log(err.message());
 });
 
