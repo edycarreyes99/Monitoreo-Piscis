@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="domotica">
+<head>
+    <meta charset="UTF-8">
+    <title>Domotica - UNAN LEON</title>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="fb.js"></script>
+</head>
+<body>
+    <h1>Node Arduino</h1>
+    <!--canvas-->
+    <canvas id="myCanvas"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+    <script>
+        const socket = io();
+        let counter = 0;
+        socket.on('temperature',function(dataSerial){
+           myChart.data.labels.push(counter);
+            myChart.data.datasets.forEach(dataset =>{
+                dataset.data.push(dataSerial);
+            });
+            counter++;
+            myChart.update();
+        });
+var ctx = document.getElementById("myCanvas").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Tiempo"],
+        datasets: [{
+            label: "Temperatura",
+            backgroundColor: 'rgb(52, 73, 94)',
+            data: []
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+</body>
+</html>
