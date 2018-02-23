@@ -27,6 +27,7 @@ app.get('/',(req,res,next) => {
 const mySerial = new SerialPort('COM6',{
     baudRate: 9600,
 });
+//se lee la salida de arduino delimitando los caracteres nulos y los espacios en blanco
 const parser = mySerial.pipe(new ReadLine({ delimeter: '\r\n'}));
 //dispone si se realizo correctamente la conexion
 parser.on('open',function(){
@@ -37,7 +38,7 @@ parser.on('open',function(){
 parser.on('data',function(data){
     let temp = parseInt(data) + " °C"
     console.log(temp);
-    //se envian los datos al index.html
+    //se envian los datos a todos los clientes
     io.emit('temperature',data)
     //se envian los datos a la firebase
     temperatureRef.push({
