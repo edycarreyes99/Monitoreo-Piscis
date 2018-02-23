@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/edycarreyes99/Proyecto-Robotica/issues"
   },
-  "homepage": "https://github.com/edycarreyes99/Proyecto-Robotica#readme"
+  "homepage": "https://github.com/edycarreyes99/Proyecto-Robotica#readme",
+  "dependencies": {
+    "firebase": "^4.10.1"
+  }
 }
