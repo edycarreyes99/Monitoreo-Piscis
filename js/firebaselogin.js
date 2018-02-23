@@ -50,5 +50,13 @@ observador();
 
 function contenido(){
     var content = document.getElementById('contenido');
-    content.innerHTML = "Esto solo lo pueden ver los usuarios activos";
+    content.innerHTML = `
+    <p>Bienvenido!</p>
+    <button onclick="cerrar()">Cerrar Sesion</button>
+    `;
+}
+
+function cerrar(){
+    firebase.auth().signOut().then(function(){
+    console.log('Sesion Cerrada')}).catch(function(error){console.log(error)})
 }
