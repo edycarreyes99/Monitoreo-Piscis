@@ -1,0 +1,19 @@
+{
+  "name": "proyecto-robotica",
+  "version": "1.0.0",
+  "description": "Proyecto de Robotica de Pilas de Peces UNAN-LEON",
+  "main": "angular.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edycarreyes99/Proyecto-Robotica.git"
+  },
+  "author": "Edycar Reyes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edycarreyes99/Proyecto-Robotica/issues"
+  },
+  "homepage": "https://github.com/edycarreyes99/Proyecto-Robotica#readme"
+}
