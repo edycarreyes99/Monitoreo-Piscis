@@ -20,7 +20,7 @@ const temperatureRef = ref.child("today");
 
 //envia la ruta de enlace de este archivo al index.html para mostrar los datos
 app.get('/',(req,res,next) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/pages/datos.html');
 });
 
 //se abre el puerto serial para recibir datos 
