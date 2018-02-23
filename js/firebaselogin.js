@@ -1,24 +1,24 @@
 function registrar(){
     var emailregistro = document.getElementById('emailregistro').value;
-    var contrasenaregistro = document.getElementById('contraseñaregistro').value;
+    var contrasenaregistro = document.getElementById('contrasenaregistro').value;
     firebase.auth().createUserWithEmailAndPassword(emailregistro, contrasenaregistro).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorcode);
+        console.log(errorCode);
         console.log(errorMessage);
         // ...
       });
 }
 
 function ingresa(){
-    var email = document.getElementById('emailingreso').value;
-    var contrasena = document.getElementById('contrasenaingreso').value;
-    firebase.auth().signInWithEmailAndPassword(email, contrasena).catch(function(error) {
+    var emailingresa = document.getElementById('emailingreso').value;
+    var contrasenaingresa = document.getElementById('contrasenaingreso').value;
+    firebase.auth().signInWithEmailAndPassword(emailingresa, contrasenaingresa).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorcode);
+      console.log(errorCode);
       console.log(errorMessage);
       // ...
     });
@@ -28,6 +28,7 @@ function observador(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log('Hay Usuarios Activos');
+            contenido();
           // User is signed in.
           var displayName = user.displayName;
           var email = user.email;
@@ -43,4 +44,11 @@ function observador(){
           // ...
         }
       });
+}
+
+observador();
+
+function contenido(){
+    var content = document.getElementById('contenido');
+    content.innerHTML = "Esto solo lo pueden ver los usuarios activos";
 }
