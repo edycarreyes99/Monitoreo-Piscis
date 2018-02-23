@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/edycarreyes99/Proyecto-Robotica#readme",
   "dependencies": {
+    "express": "^4.16.2",
     "firebase": "^4.10.1"
   }
 }
