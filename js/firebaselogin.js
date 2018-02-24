@@ -1,9 +1,10 @@
 function registrar(){
-    var emailregistro = document.getElementById('emailregistro').value;
-    var contrasenaregistro = document.getElementById('contrasenaregistro').value;
-    firebase.auth().createUserWithEmailAndPassword(emailregistro, contrasenaregistro)
+    var email = document.getElementById('email').value;
+    var contrasena = document.getElementById('contrasena').value;
+    firebase.auth().createUserWithEmailAndPassword(email, contrasena)
     .then(function(){
         verificaUsuario()
+        location.reload(true)
     })
 
     .catch(function(error) {
@@ -17,9 +18,9 @@ function registrar(){
 }
 
 function ingresa(){
-    var emailingresa = document.getElementById('emailingreso').value;
-    var contrasenaingresa = document.getElementById('contrasenaingreso').value;
-    firebase.auth().signInWithEmailAndPassword(emailingresa, contrasenaingresa)
+    var email = document.getElementById('email').value;
+    var contrasena = document.getElementById('contrasena').value;
+    firebase.auth().signInWithEmailAndPassword(email, contrasena)
     .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -64,19 +65,34 @@ function contenido(user){
     if(user.emailVerified)
     {
         content.innerHTML = `
-        <p>Bienvenido!</p>
-        <button onclick="cerrar()">Cerrar Sesion</button>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <div class="container">
+        <p class="h5 mt-5">Bienvenido!</p>
+        <div class="container">
+        <button onclick="cerrar()" class="btn btn-danger">Cerrar Sesion</button>
+        </div>
+        </div>
+
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         `;
     }else{
         content.innerHTML=`
-        <h1>Para poder iniciar sesion primero tiene que verificar su correo electronico<h1>
+        <p class="h4">Para poder iniciar sesion primero tiene que verificar su correo electronico<p>
         `;
     }
 }
 
 function cerrar(){
     firebase.auth().signOut().then(function(){
-    console.log('Sesion Cerrada')}).catch(function(error){console.log(error)})
+    console.log('Sesion Cerrada')
+    location.reload(true)
+}).catch(function(error){
+        console.log(error)
+    })
 }
 
 function verificaUsuario(){
