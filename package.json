@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "firebase": "^4.10.1",
+    "firestore": "^1.1.6",
     "serialport": "^6.0.5",
     "socketio": "^1.0.0"
   }
