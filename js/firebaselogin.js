@@ -21,6 +21,9 @@ function ingresa(){
     var email = document.getElementById('email').value;
     var contrasena = document.getElementById('contrasena').value;
     firebase.auth().signInWithEmailAndPassword(email, contrasena)
+    .then(function(){
+        //acciones
+    })
     .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
