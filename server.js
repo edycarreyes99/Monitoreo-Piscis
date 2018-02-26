@@ -1,3 +1,22 @@
+//variables para trabajar con la fechas y almacenarlas
+var fecha = new Date();
+
+var dia_semana = [
+"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"
+];
+
+var mes = [
+"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
+];
+
+var hoy = dia_semana[fecha.getDay()]+", "+fecha.getDate()+" de " + mes[fecha.getMonth()]+" del "+fecha.getFullYear();
+console.log(hoy);
+
+//variables para trabajar con la hora y almacenarlas
+var hora = new Date();
+var hora_dia = hora.getHours() + ":" + hora.getMinutes() + ":" + hora.getSeconds();
+console.log(hora_dia);
+
 //integracion de las dependencias de SerialPort
 const SerialPort = require('serialport');
 const ReadLine = SerialPort.parsers.Readline;
@@ -16,7 +35,7 @@ firebase.initializeApp({
     databaseURL: "https://proyecto-robotica-35bed.firebaseio.com"
 });
 const ref = firebase.database().ref('temperature');
-const temperatureRef = ref.child("today");
+const temperatureRef = ref.child(hoy);
 
 //envia la ruta de enlace de este archivo al index.html para mostrar los datos
 app.get('/',(req,res,next) => {
@@ -28,7 +47,7 @@ const mySerial = new SerialPort('COM6',{
     baudRate: 9600,
 });
 //se lee la salida de arduino delimitando los caracteres nulos y los espacios en blanco
-const parser = mySerial.pipe(new ReadLine({ delimeter: '\r\n'}));
+const parser = mySerial.pipe(new ReadLine({ delimeter: '\r \n'}));
 //dispone si se realizo correctamente la conexion
 parser.on('open',function(){
     console.log('Puerto Serial Abierto');
@@ -36,14 +55,14 @@ parser.on('open',function(){
 
 //muestra dato por dato en consola
 parser.on('data',function(data){
-    let temp = parseInt(data) + " °C"
+    let temp = parseInt(data.toString()) + " °C"
     console.log(temp);
     //se envian los datos a todos los clientes
     io.emit('temperature',data)
     //se envian los datos a la firebase
     temperatureRef.push({
         valor: data,
-        fecha: 'hoy'
+        hora: hora_dia
     });
 });
 
