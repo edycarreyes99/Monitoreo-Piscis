@@ -1,5 +1,4 @@
 //variables para trabajar con la fechas y almacenarlas
-var fecha = new Date();
 var dia_semana = [
 "Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"
 ];
@@ -7,15 +6,6 @@ var dia_semana = [
 var mes = [
 "Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
 ];
-
-var hoy = dia_semana[fecha.getDay()]+", "+fecha.getDate()+" de " + mes[fecha.getMonth()]+" del "+fecha.getFullYear();
-console.log(hoy);
-
-//variables para trabajar con la hora y almacenarlas
-var hora = new Date();
-var hora_dia = hora.getHours() + ":" + hora.getMinutes() + ":" + hora.getSeconds();
-console.log(hora_dia);
-
 //integracion de las dependencias de SerialPort
 const SerialPort = require('serialport');
 const ReadLine = SerialPort.parsers.Readline;
@@ -33,15 +23,6 @@ const firebase = require('firebase');
 firebase.initializeApp({
     databaseURL: "https://proyecto-robotica-35bed.firebaseio.com"
 });
-
-//se definen las direcciones de datos donde se guardaran
-const ref = firebase.database().ref('temperature');
-const temperatureAno = ref.child(fecha.getFullYear());
-const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);
-const temperatureDay = temperatureMonth.child(fecha.getDate());
-const temperatureHour = temperatureDay.child(hora.getHours());
-const temperatureMinutes = temperatureHour.child(hora.getMinutes());
-const temperatureSeconds = temperatureMinutes.child(hora.getSeconds());
 
 //envia la ruta de enlace de este archivo al index.html para mostrar los datos
 app.get('/',(req,res,next) => {
@@ -61,14 +42,23 @@ parser.on('open',function(){
 
 //muestra dato por dato en consola
 parser.on('data',function(data){
-    let temp = parseInt(data.toString()) + " °C"
+    var fecha = new Date();
+    let temp = parseInt(data.toString()) + " °C";
     console.log(temp);
     //se envian los datos a todos los clientes
     io.emit('temperature',data)
     //se envian los datos a la firebase
+    //se definen las direcciones de datos donde se guardaran
+    const ref = firebase.database().ref('temperature');
+    const temperatureAno = ref.child(fecha.getFullYear());
+    const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);
+    const temperatureDay = temperatureMonth.child(fecha.getDate());
+    const temperatureHour = temperatureDay.child(fecha.getHours());
+    const temperatureMinutes = temperatureHour.child(fecha.getMinutes());
+    const temperatureSeconds = temperatureMinutes.child(fecha.getSeconds());
     temperatureSeconds.push({
         valor: data,
-        hora: hora_dia
+        hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
     });
 });
 
