@@ -1,6 +1,5 @@
 //variables para trabajar con la fechas y almacenarlas
 var fecha = new Date();
-
 var dia_semana = [
 "Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"
 ];
@@ -34,8 +33,15 @@ const firebase = require('firebase');
 firebase.initializeApp({
     databaseURL: "https://proyecto-robotica-35bed.firebaseio.com"
 });
+
+//se definen las direcciones de datos donde se guardaran
 const ref = firebase.database().ref('temperature');
-const temperatureRef = ref.child(hoy);
+const temperatureAno = ref.child(fecha.getFullYear());
+const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);
+const temperatureDay = temperatureMonth.child(fecha.getDate());
+const temperatureHour = temperatureDay.child(hora.getHours());
+const temperatureMinutes = temperatureHour.child(hora.getMinutes());
+const temperatureSeconds = temperatureMinutes.child(hora.getSeconds());
 
 //envia la ruta de enlace de este archivo al index.html para mostrar los datos
 app.get('/',(req,res,next) => {
@@ -60,7 +66,7 @@ parser.on('data',function(data){
     //se envian los datos a todos los clientes
     io.emit('temperature',data)
     //se envian los datos a la firebase
-    temperatureRef.push({
+    temperatureSeconds.push({
         valor: data,
         hora: hora_dia
     });
