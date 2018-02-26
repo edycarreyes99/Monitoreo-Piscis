@@ -1,3 +1,6 @@
+//archivo de configuracion de envio y recepcion de datos a la base de datos
+
+
 //variables para trabajar con la fechas y almacenarlas
 var dia_semana = [
 "Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"
