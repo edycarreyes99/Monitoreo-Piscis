@@ -1,0 +1,3 @@
+FONTS:
+
+- Nexa by Fontfabric: http://www.fontsquirrel.com/fonts/nexa
