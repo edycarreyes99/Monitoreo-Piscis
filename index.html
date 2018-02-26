@@ -25,97 +25,97 @@
 <!--se termina la integracion con firebase-->
 </head>
 <body>
-    <!--se agrega el navbar-->
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
-          </nav>
-    </div>
-    <!-- se termina de agregar el navbar-->  
-    <!--Se ingresa los inputs para el registro e inicio de sesion-->
-    <div class="container">
-    <div class="display-4">
-      <p>Registro o Inicio de Sesion de Usuarios</p>
-    </div>
-    <div class="container">
-        <p class="h4">Registrate</p>
-        <div>
-            <!--Se ingresa los inputs para el inicio de sesion-->
-            <div class="form-group">
-              <label>E-Mail</label>
-              <input id= "email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese el E-Mail">
-              <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tu email con terceros.</small>
-            </div>
-            <div class="form-group">
-              <label>Contraseña</label>
-              <input type="password" class="form-control" id="contrasena" placeholder="Contraseña">
-            </div>
-            <!--se terminan de ingresar los inputs-->
-            <div class="container">
-            <button onclick="ingresa()" class="btn btn-success">Iniciar Sesion</button>
-            <label >Ó</label>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#ModalRegistro">Registrarse</button>
+   <!--se agrega el navbar-->
+   <div class="container" id="navbar">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Piscis</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
           </div>
-        </div>
-    </div>
-    <!-- Modal Registro -->
-    <div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Confirmacion de Registro</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ¿Esta Seguro que desea registrar este Usuario?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-              <button onclick="registrar()" class="btn btn-success" data-dismiss="modal">Aceptar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-
-    <!--se añade el contenido que solo se puede ver logueado-->
-    <div id="contenido"></div>
+        </nav>
   </div>
-
+   </div>
+   <!-- se termina de agregar el navbar--> 
+      <!--se agrega el card para contener los inputs-->
+      <div class="card mx-auto mt-3 mb-3" style="width: 18rem;">
+          <!--se ingresa la imagen como logitopo-->
+          <img class="card-img-top" src="images/logo/Piscis%20Logo.png" alt="Card image cap">
+          <!-- se termina de ingresar la imagen como logotipo-->
+          <!--Se ingresa los inputs para el registro e inicio de sesion-->
+          <div class="container">
+            <div class="container">
+                <p class="h4 text-center">Registrate o Inicia Sesion</p>
+                <div>
+                    <!--Se ingresa los inputs para el inicio de sesion-->
+                    <div class="form-group text-center">
+                      <label>E-Mail</label>
+                      <input id= "email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese el E-Mail">
+                      <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tu email con terceros.</small>
+                    </div>
+                    <div class="form-group text-center">
+                      <label>Contraseña</label>
+                      <input type="password" class="form-control" id="contrasena" placeholder="Contraseña">
+                    </div>
+                    <!--se terminan de ingresar los inputs-->
+                    <div class="container text-center">
+                    <button onclick="ingresa()" class="btn btn-link">Iniciar Sesion</button>
+                    <button class="btn btn-link" data-toggle="modal" data-target="#ModalRegistro">Registrarse</button>
+                  </div>
+                </div>
+            </div>
+            <!-- Modal Registro -->
+            <div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Confirmacion de Registro</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ¿Esta Seguro que desea registrar este Usuario?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                      <button onclick="registrar()" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        <!-- se termina de agregar el card-->
+        <!--se añade el contenido que solo se puede ver logueado-->
+        <div id="contenido"></div>
 <!--se agregan los cdn js de bootstrap 4-->
 <script src="js/firebaselogin.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

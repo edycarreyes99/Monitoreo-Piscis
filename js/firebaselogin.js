@@ -65,14 +65,15 @@ observador();
 function contenido(user){
     var user = user;
     var content = document.getElementById('contenido');
+    var navbar = document.getElementById('navbar');
     if(user.emailVerified)
     {
         content.innerHTML = `
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <div class="container">
+        <div class="container text-center">
         <p class="h5 mt-5">Bienvenido!</p>
-        <div class="container">
+        <div class="container mx-auto">
         <button onclick="cerrar()" class="btn btn-danger">Cerrar Sesion</button>
         </div>
         </div>
