@@ -2,33 +2,33 @@
 <html lang="es" ng-app="domotica">
 <head>
     <meta charset="UTF-8">
-    <title>Domotica - UNAN LEON</title>
+    <title>Piscis-Temperature</title>
     <script src="socket.io/socket.io.js"></script>
-    <script src="fb.js"></script>
+    <script src="../server.js"></script>
 </head>
 <body>
-    <h1>Node Arduino</h1>
+    <h1>Piscis-Temperature</h1>
     <!--canvas-->
     <canvas id="myCanvas"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
     <script>
         const socket = io();
-        let counter = 0;
+        let counter = 5;
         socket.on('temperature',function(dataSerial){
            myChart.data.labels.push(counter);
             myChart.data.datasets.forEach(dataset =>{
                 dataset.data.push(dataSerial);
             });
-            counter++;
+            counter+=5;
             myChart.update();
         });
 var ctx = document.getElementById("myCanvas").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ["Tiempo"],
+        labels: ["Tiempo (s)"],
         datasets: [{
-            label: "Temperatura",
+            label: "Temperatura (°C)",
             backgroundColor: 'rgb(52, 73, 94)',
             data: []
         }]
@@ -44,6 +44,6 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
-<script src="../js/firebaselogin.js"></script>
+<script src="../server.js"></script>
 </body>
 </html>

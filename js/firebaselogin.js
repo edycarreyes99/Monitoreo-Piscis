@@ -1,3 +1,5 @@
+var modalError = document.getElementById('cuerpoModalError');
+
 function registrar(){
     var email = document.getElementById('email').value;
     var contrasena = document.getElementById('contrasena').value;
@@ -23,6 +25,8 @@ function ingresa(){
     firebase.auth().signInWithEmailAndPassword(email, contrasena)
     .then(function(){
         //acciones
+        modalError.innerHTML = `Bienvenido`;
+        
     })
     .catch(function(error) {
       // Handle Errors here.
@@ -30,6 +34,7 @@ function ingresa(){
       var errorMessage = error.message;
       console.log(errorCode);
       console.log(errorMessage);
+      modalError.innerHTML= errorMessage;
       // ...
     });
 }
@@ -72,7 +77,6 @@ function contenido(user){
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <div class="container text-center">
-        <p class="h5 mt-5">Bienvenido!</p>
         <div class="container mx-auto">
         <button onclick="cerrar()" class="btn btn-danger">Cerrar Sesion</button>
         </div>

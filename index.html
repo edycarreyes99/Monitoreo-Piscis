@@ -87,7 +87,7 @@
                     </div>
                     <!--se terminan de ingresar los inputs-->
                     <div class="container text-center">
-                    <button onclick="ingresa()" class="btn btn-link">Iniciar Sesion</button>
+                    <button onclick="ingresa()" class="btn btn-link" data-toggle="modal" data-target="#ModalInicio">Iniciar Sesion</button>
                     <button class="btn btn-link" data-toggle="modal" data-target="#ModalRegistro">Registrarse</button>
                   </div>
                 </div>
@@ -112,6 +112,27 @@
                   </div>
                 </div>
               </div>
+              <!-- se termina de agregar el modal-->
+              <!-- Modal Inicio -->
+            <div class="modal fade" id="ModalInicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion de Registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body"></div>
+                    <div id="cuerpoModalError"></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- se termina de agregar el modal-->
           </div>
         <!-- se termina de agregar el card-->
         <!--se añade el contenido que solo se puede ver logueado-->
