@@ -1,5 +1,7 @@
 var modalError = document.getElementById('cuerpoModalError');
 
+let photo = "https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/19875212_1006350296174807_7197459173741487258_n.jpg?oh=1e358b9d86d030d89367c8f75cb0763f&oe=5B03F63D";
+
 function registrar(){
     var email = document.getElementById('email').value;
     var contrasena = document.getElementById('contrasena').value;
@@ -25,7 +27,17 @@ function ingresa(){
     firebase.auth().signInWithEmailAndPassword(email, contrasena)
     .then(function(){
         //acciones
-        modalError.innerHTML = `Bienvenido`;
+        user.updateProfile({
+            displayName: "Edycar Reyes",
+            photoURL: `${photo}`
+          }).then(function() {
+              console.log("Perfil actualizado Bienvenido "+ `${user.displayName}`);
+            // Update successful.
+          }).catch(function(error) {
+            // An error happened.
+            console.log(error);
+          });
+        modalError.innerHTML = `Bienvenido ${user.displayName}`;
         
     })
     .catch(function(error) {
@@ -49,6 +61,7 @@ function observador(){
           var email = user.email;
           console.log('******************')
           console.log(user.emailVerified)
+          console.log(user.displayName);
           console.log('******************')
 
           var emailVerified = user.emailVerified;
