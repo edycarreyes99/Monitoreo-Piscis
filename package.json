@@ -4,7 +4,7 @@
   "description": "Proyecto de Robotica de Pilas de Peces UNAN-LEON",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start-dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,12 @@
   "homepage": "https://github.com/edycarreyes99/Proyecto-Robotica#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "express-jwt": "^5.3.0",
     "firebase": "^4.10.1",
+    "firebase-admin": "^5.7.0",
+    "firebase-functions": "^0.8.1",
     "firestore": "^1.1.6",
+    "nodemon": "^1.15.1",
     "plotly.js": "^1.34.0",
     "serialport": "^6.0.5",
     "socketio": "^1.0.0"
