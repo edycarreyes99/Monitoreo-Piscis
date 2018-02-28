@@ -1,6 +1,5 @@
 //archivo de configuracion de envio y recepcion de datos a la base de datos
 
-
 //variables para trabajar con la fechas y almacenarlas
 var dia_semana = [
 "Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"
@@ -79,7 +78,8 @@ parser.on('data',function(data){
     let hora = fecha.getHours();
     let minutos = fecha.getMinutes();
     let segundos = fecha.getSeconds();
-    const docRef = db.collection('Sensores').doc(`${ano}`).collection(`${meses}`).doc(`${dia}`).collection(`${hora}`).doc(`${minutos}`).collection(`${segundos}`).doc("Temperatura","Humedad","PH","Oxigeno");
+    //const docRef = db.collection('Sensores').doc(`${ano}`).collection(`${meses}`).doc(`${dia}`).collection(`${hora}`).doc(`${minutos}`).collection(`${segundos}`).doc("Temperatura","Humedad","PH","Oxigeno");
+    const docRef = db.collection('Sensores').doc('Temperatura');
     const ref = firebase.database().ref('temperature');
     const temperatureAno = ref.child(fecha.getFullYear());
     const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);
