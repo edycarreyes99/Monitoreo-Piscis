@@ -45,7 +45,9 @@ admin.initializeApp({
     databaseURL: "https://proyecto-robotica-35bed.firebaseio.com/"
   });
 
-var db = admin.firestore();
+//ph, temperatura, amonio, oxigeno, posible streaming
+
+  var db = admin.firestore();
 
 //envia la ruta de enlace de este archivo al index.html para mostrar los datos
 app.get('/',(req,res,next) => {
@@ -78,8 +80,8 @@ parser.on('data',function(data){
     let hora = fecha.getHours();
     let minutos = fecha.getMinutes();
     let segundos = fecha.getSeconds();
-    //const docRef = db.collection('Sensores').doc(`${ano}`).collection(`${meses}`).doc(`${dia}`).collection(`${hora}`).doc(`${minutos}`).collection(`${segundos}`).doc("Temperatura","Humedad","PH","Oxigeno");
-    const docRef = db.collection('Sensores').doc('Temperatura');
+    const docRef = db.collection('Sensores').doc(`${ano}`).collection(`${meses}`).doc(`${dia}`).collection(`${hora}`).doc(`${minutos}`).collection(`${segundos}`).doc("Temperatura","Humedad","PH","Oxigeno");
+    //const docRef = db.collection('Sensores').doc('Temperatura');
     const ref = firebase.database().ref('temperature');
     const temperatureAno = ref.child(fecha.getFullYear());
     const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);

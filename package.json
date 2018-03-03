@@ -23,6 +23,7 @@
     "firebase-functions": "^0.8.1",
     "firestore": "^1.1.6",
     "nodemon": "^1.17.1",
+    "npm": "^5.7.1",
     "serialport": "^6.1.1",
     "socket.io": "^2.0.4",
     "socketio": "^1.0.0"
