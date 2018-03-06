@@ -85,7 +85,7 @@ parser.on('data',function(data){
     //datos en firestore sencillos:
     //const docRef = db.collection('Sensores').doc('Temperatura');
     //datos en firebase anidados:
-    const ref = firebase.database().ref('temperature');
+    const ref = firebase.database().ref('contactos');
     const temperatureAno = ref.child(fecha.getFullYear());
     const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);
     const temperatureDay = temperatureMonth.child(fecha.getDate());
