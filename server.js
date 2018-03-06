@@ -89,10 +89,12 @@ parser.on('data',function(data){
     const temperatureHour = temperatureDay.child(fecha.getHours());
     const temperatureMinutes = temperatureHour.child(fecha.getMinutes());
     const temperatureSeconds = temperatureMinutes.child(fecha.getSeconds());
-    temperatureSeconds.push({
+temperatureSeconds.push({
         valor: data,
         hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
     });
+    //elimina todos los datos cuando la base de datos se llena:
+    //ref.remove();
     docRef.set({
         valor: data,
         hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
