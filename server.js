@@ -80,8 +80,11 @@ parser.on('data',function(data){
     let hora = fecha.getHours();
     let minutos = fecha.getMinutes();
     let segundos = fecha.getSeconds();
+    //datos en firestore complejos
     const docRef = db.collection('Sensores').doc(`${ano}`).collection(`${meses}`).doc(`${dia}`).collection(`${hora}`).doc(`${minutos}`).collection(`${segundos}`).doc("Temperatura","Humedad","PH","Oxigeno");
+    //datos en firestore sencillos:
     //const docRef = db.collection('Sensores').doc('Temperatura');
+    //datos en firebase anidados:
     const ref = firebase.database().ref('temperature');
     const temperatureAno = ref.child(fecha.getFullYear());
     const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);
@@ -89,12 +92,14 @@ parser.on('data',function(data){
     const temperatureHour = temperatureDay.child(fecha.getHours());
     const temperatureMinutes = temperatureHour.child(fecha.getMinutes());
     const temperatureSeconds = temperatureMinutes.child(fecha.getSeconds());
+    //se agrega valores a firebase dede la ultima referencia child
 temperatureSeconds.push({
         valor: data,
         hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
     });
     //elimina todos los datos cuando la base de datos se llena:
     //ref.remove();
+    //se agregan valores a firestore ya sea de referencia compleja o sencilla
     docRef.set({
         valor: data,
         hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
