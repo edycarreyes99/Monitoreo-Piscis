@@ -81,7 +81,7 @@ parser.on('data',function(data){
     let minutos = fecha.getMinutes();
     let segundos = fecha.getSeconds();
     //datos en firestore complejos
-    const docRef = db.collection('Sensores').doc(`${ano}`).collection(`${meses}`).doc(`${dia}`).collection(`${hora}`).doc(`${minutos}`).collection(`${segundos}`).doc("Temperatura","Humedad","PH","Oxigeno");
+    const docRef = db.collection('Piscis').doc('Sensores').collection('Temperatura').doc(`${fecha.getDate()}-${mes[fecha.getMonth()]}-${fecha.getFullYear()},${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`);
     //datos en firestore sencillos:
     //const docRef = db.collection('Sensores').doc('Temperatura');
     //datos en firebase anidados:
@@ -109,8 +109,12 @@ parser.on('data',function(data){
     //ref.remove();
     //se agregan valores a firestore ya sea de referencia compleja o sencilla
     docRef.set({
-        valor: data,
-        hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
+        ano: fecha.getFullYear(),
+        dia: fecha.getDate(),
+        hora: fecha.getHours(),
+        mes: mes[fecha.getMonth()],
+        private_key_id: `${fecha.getDate()}-${mes[fecha.getMonth()]}-${fecha.getFullYear()},${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`,
+        valor: data
     }).then(function(){
         //something to do
     }).catch(function(error){
