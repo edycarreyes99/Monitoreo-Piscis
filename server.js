@@ -81,11 +81,11 @@ parser.on('data',function(data){
     let minutos = fecha.getMinutes();
     let segundos = fecha.getSeconds();
     //datos en firestore complejos
-    const docRef = db.collection('Sensores').doc(`${ano}`).collection(`${meses}`).doc(`${dia}`).collection(`${hora}`).doc(`${minutos}`).collection(`${segundos}`).doc("Temperatura","Humedad","PH","Oxigeno");
+    const docRef = db.collection('Piscis').doc('Sensores').collection('Temperatura').doc(`${fecha.getDate()}-${mes[fecha.getMonth()]}-${fecha.getFullYear()},${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`);
     //datos en firestore sencillos:
     //const docRef = db.collection('Sensores').doc('Temperatura');
     //datos en firebase anidados:
-    const ref = firebase.database().ref('contactos');
+    const ref = firebase.database().ref('contactos/'+`${fecha.getDate()}-${mes[fecha.getMonth()]}-${fecha.getFullYear()},${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`);
     const temperatureAno = ref.child(fecha.getFullYear());
     const temperatureMonth = temperatureAno.child(mes[fecha.getMonth()]);
     const temperatureDay = temperatureMonth.child(fecha.getDate());
@@ -93,16 +93,28 @@ parser.on('data',function(data){
     const temperatureMinutes = temperatureHour.child(fecha.getMinutes());
     const temperatureSeconds = temperatureMinutes.child(fecha.getSeconds());
     //se agrega valores a firebase dede la ultima referencia child
-temperatureSeconds.push({
+/*temperatureSeconds.push({
         valor: data,
         hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
+    });*/
+    ref.set({
+        ano: fecha.getFullYear(),
+        dia: fecha.getDate(),
+        hora: fecha.getHours(),
+        mes: mes[fecha.getMonth()],
+        private_key_id: `${fecha.getDate()}-${mes[fecha.getMonth()]}-${fecha.getFullYear()},${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`,
+        valor: data
     });
     //elimina todos los datos cuando la base de datos se llena:
     //ref.remove();
     //se agregan valores a firestore ya sea de referencia compleja o sencilla
     docRef.set({
-        valor: data,
-        hora: fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds()
+        ano: fecha.getFullYear(),
+        dia: fecha.getDate(),
+        hora: fecha.getHours(),
+        mes: mes[fecha.getMonth()],
+        private_key_id: `${fecha.getDate()}-${mes[fecha.getMonth()]}-${fecha.getFullYear()},${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`,
+        valor: data
     }).then(function(){
         //something to do
     }).catch(function(error){
